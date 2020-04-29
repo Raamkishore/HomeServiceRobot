@@ -1,0 +1,49 @@
+Packages used :-
+
+add_marker - add_marker.cpp
+
+pick_objects - pick_objects.cpp
+
+turtlebot_rviz_launchers - view_navigation.launch
+
+turtlebot_gazebo - turtlebot_world.launch
+
+turtlebot_gazebo - amcl_demo.launch
+
+
+Explanations :-
+
+1)add_marker
+
+add_marker package is used as a marker in rviz to simulate where the pick and drop places are.
+When the robot reaches the pick location, the marker is removed.
+This is done by subscribing to the Odometry values of the robot.
+By these values, we can track where the robot is and we can simulate that the object is picked.
+When the robot reaches the drop location, we bring the marker in again.
+This is just to simulate that the object is dropped at the drop location.
+
+2)pick_objects
+
+pick_objects package is used to pick the simulated object and drop it in the drop location.
+This is done just by sending goals to the robot using ROS Navigation stack.
+x and y coordinates of the pick and drop location are noted first.
+Using these coordinates, robot is programmed inside the package.
+It is programmed in such a way that it waits for 5 seconds in the pick location and make its way to the drop location.
+amcl node takes care of the localization.
+
+3) view_navigation
+
+This is just to view the simulation in rviz.
+You can see how the robot detects obstacles, localise itself and plans a path to the goal location.
+
+4)gazebo world
+
+Here, we can see the complete world of the robot in gazebo.
+
+5)amcl
+
+amcl is a short form of Adaptive Monte Carlo Localization.
+This is used to find where the robot actually is inside the world.
+These are done using particles where particle is randomly distributed first.
+Each particle is assigned some weights with respect to the measurements of the robot from its enviroment.
+More weights are assigned to the particles if the measurement is almost equal and vice versa.
